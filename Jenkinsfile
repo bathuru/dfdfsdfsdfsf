@@ -37,12 +37,7 @@ pipeline {
 
          stage ('Nexus Upload') {
                   steps {
-                          echo pwd;
-                           nexusPublisher  nexusInstanceId: 'AppleNexusRepo',
-                           nexusRepositoryId: 'simpleappRepo',
-                           packages: [[$class: 'MavenPackage',
-                           mavenAssetList: [[classifier: '', extension: '', filePath: "${WORKSPACE}/target/simpleapp-${REL_NUM}.war"]],
-                           mavenCoordinate: [artifactId: 'simpleapp', groupId: 'com.apple', packaging: 'war', version: "${REL_NUM}"]]]
+                          echo "Artifact Upload";
                    }
           }
 
