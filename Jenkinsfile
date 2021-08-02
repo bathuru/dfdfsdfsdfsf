@@ -14,7 +14,7 @@ pipeline {
     stages {
            stage ('Git Checkout') {
                  steps {
-                     echo pwd;
+                     sh "Heloo!!!!";
                      git credentialsId: 'github-credentials' , url: 'https://github.com/bathuru/simpleapp.git',  branch: 'master'   
                 }
            }
