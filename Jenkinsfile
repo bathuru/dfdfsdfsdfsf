@@ -15,7 +15,7 @@ pipeline {
            stage ('Git Checkout') {
                  steps {
                      echo pwd;
-                     git credentialsId: 'github-credentials' , url: 'https://github.com/bathurugithub/simpleapp.git',  branch: 'master'   
+                     git credentialsId: 'github-credentials' , url: 'https://github.com/bathuru/simpleapp.git',  branch: 'master'   
                 }
            }
 
