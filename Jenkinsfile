@@ -23,7 +23,7 @@ pipeline {
               parallel {
                   stage ("Maven Build") {
                         steps {
-                             echo pwd;
+                             echo "Hello 222";
                             sh "${mavenHome}/bin/mvn clean versions:set -Dver=${VER_NUM} package "
                        }
                   }
