@@ -8,10 +8,10 @@ pipeline {
     environment {
           VER_NUM = "1.0.${BUILD_NUMBER}";
           REL_NUM = "1.0.${BUILD_NUMBER}.RELEASE";
-          mavenHome =  tool name: "devops-maven", type: "maven"
+          mavenHome =  tool name: "maven", type: "maven"
      }
     tools{
-          maven 'devops-maven'
+          maven 'maven'
      }
     stages {
            stage ('Git Checkout') {
