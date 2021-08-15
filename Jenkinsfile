@@ -91,7 +91,7 @@ pipeline {
           stage('Deploy Into TEST') {
               steps {   
            sh "pwd"
-           sshagent(['docker_Server_SSH']) {
+           sshagent(['aws-ap-south-pem']) {
                sh "ssh -o StrictHostKeyChecking=no ec2-user@13.232.243.93 sudo docker rm -f simpleapp || true"
                sh "ssh -o StrictHostKeyChecking=no ec2-user@13.232.243.93 sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
           }
