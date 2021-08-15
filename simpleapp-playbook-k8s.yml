@@ -17,4 +17,3 @@
 
      - name: Deploy simpleapp in kubernets
        command: kubectl apply -f simpleapp-deploy-k8s.yaml
----
