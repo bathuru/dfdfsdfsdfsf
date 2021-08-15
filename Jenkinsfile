@@ -89,11 +89,13 @@ pipeline {
           //}
           
           stage('Deploy Into TEST') {
+              steps {   
            sh "pwd"
            sshagent(['docker_Server_SSH']) {
                sh "ssh -o StrictHostKeyChecking=no ec2-user@3.6.86.246  sudo docker rm -f simpleapp || true"
                sh "ssh -o StrictHostKeyChecking=no ec2-user@3.6.86.246  sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
           }
+              }
      }     
      /*
         stage('Deploy Into PROD') {
