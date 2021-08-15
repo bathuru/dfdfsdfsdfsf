@@ -92,8 +92,8 @@ pipeline {
               steps {   
            sh "pwd"
            sshagent(['aws-ap-south-pem']) {
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.232.243.93 sudo docker rm -f simpleapp || true"
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.232.243.93 sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.235.99.115 sudo docker rm -f simpleapp || true"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.235.99.115 sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
           }
               }
      }     
@@ -102,8 +102,8 @@ pipeline {
              steps {  
            sh "pwd"
            sshagent(['aws-ap-south-pem']) {
-               sh "scp -o StrictHostKeyChecking=no simpleapp-deploy-k8s.yaml simpleapp-playbook-k8s.yml ec2-user@35.154.249.173:/home/ec2-user/"
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@35.154.249.173 ansible-playbook  -i /etc/ansible/hosts /home/ec2-user/simpleapp-playbook-k8s.yml"
+               sh "scp -o StrictHostKeyChecking=no simpleapp-deploy-k8s.yaml simpleapp-playbook-k8s.yml ec2-user@13.232.117.5:/home/ec2-user/"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.232.117.5 ansible-playbook  -i /etc/ansible/hosts /home/ec2-user/simpleapp-playbook-k8s.yml"
           }
              }
      }
