@@ -92,8 +92,8 @@ pipeline {
               steps {   
            sh "pwd"
            sshagent(['docker_Server_SSH']) {
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@3.108.62.61  sudo docker rm -f simpleapp || true"
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@3.108.62.61  sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.234.118.140 sudo docker rm -f simpleapp || true"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.234.118.140 sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
           }
               }
      }     
