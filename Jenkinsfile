@@ -35,16 +35,6 @@ pipeline {
                   }
               }
           }
-
-     stage ('SonarQube Analysis') {
-        steps {
-              withSonarQubeEnv('sonar_server') {
-                 //sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
-                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=bathuru_simpleapp'
-              }
-            }
-      }
-
     stage ('Artifactory configuration') {
             steps {
                 rtServer (
@@ -66,6 +56,15 @@ pipeline {
                 )
             }
     }
+
+     stage ('SonarQube Analysis') {
+        steps {
+              withSonarQubeEnv('sonar_server') {
+                 //sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
+                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=bathuru_simpleapp'
+              }
+            }
+      }    
 /*
           stage('Docker Build & Push') {    
                   steps {
