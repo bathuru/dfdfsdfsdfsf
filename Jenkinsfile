@@ -97,7 +97,7 @@ pipeline {
           }
               }
      }     
-     
+     /*
         stage('Deploy Into PROD') {
              steps {  
            sh "pwd"
@@ -106,7 +106,7 @@ pipeline {
                sh "ssh -o StrictHostKeyChecking=no ec2-user@3.6.86.168 ansible-playbook  -i /etc/ansible/hosts /home/ec2-user/simpleapp-playbook-k8s.yml"
           }
              }
-     }
+     }*/
 
     }
     post {
