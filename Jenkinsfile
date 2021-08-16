@@ -40,7 +40,7 @@ pipeline {
                 rtServer (
                     id: "jfrog_server",
                     url: "https://bathuru.jfrog.io/artifactory",
-                    credentialsId: "jfrog_credentials"
+                    credentialsId: "jfrog_cred"
                 )
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
