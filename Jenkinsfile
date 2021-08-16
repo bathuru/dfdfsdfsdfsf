@@ -135,7 +135,25 @@ pipeline {
                  //} 
           //}
           
-
+          stage('Deploy Into TEST') {
+              steps {   
+           sh "pwd"
+           sshagent(['aws-ap-south-pem']) {
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.127.229.88 sudo docker rm -f simpleapp || true"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.127.229.88 sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
+          }
+              }
+     }     
+     /*
+        stage('Deploy Into PROD') {
+             steps {  
+           sh "pwd"
+           sshagent(['aws-ap-south-pem']) {
+               sh "scp -o StrictHostKeyChecking=no simpleapp-deploy-k8s.yaml simpleapp-playbook-k8s.yml ec2-user@3.6.86.168:/home/ec2-user/"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@3.6.86.168 ansible-playbook  -i /etc/ansible/hosts /home/ec2-user/simpleapp-playbook-k8s.yml"
+          }
+             }
+     }*/
 
     }
     post {
