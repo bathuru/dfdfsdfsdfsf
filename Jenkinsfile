@@ -24,7 +24,8 @@ pipeline {
                   stage ("Maven Build") {
                         steps {
                              echo "Hello 222";
-                            sh "${mavenHome}/bin/mvn clean versions:set -Dver=${VER_NUM} package "
+                            //sh "${mavenHome}/bin/mvn clean versions:set -Dver=${VER_NUM} package "
+                            sh "${mavenHome}/bin/mvn clean package "
                        }
                   }
                   stage ("Gradel Build") {
