@@ -35,12 +35,36 @@ pipeline {
               }
           }
 
-         stage ('Nexus Upload') {
-                  steps {
-                          echo "Artifact Upload";
-                   }
-          }
+     stage ('SonarQube Analysis') {
+        steps {
+              withSonarQubeEnv('sonar_server') {
+                 sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
+              }
+            }
+      }
 
+    stage ('Artifactory configuration') {
+            steps {
+                rtServer (
+                    id: "jfrog_server",
+                    url: "https://bathuru.jfrog.io/artifactory",
+                    credentialsId: "jfrog_credentials"
+                )
+                rtMavenDeployer (
+                    id: "MAVEN_DEPLOYER",
+                    serverId: "jfrog_server",
+                    releaseRepo: "simpleapp-local",
+                    snapshotRepo: "simpleapp-local"
+                )
+                rtMavenResolver (
+                    id: "MAVEN_RESOLVER",
+                    serverId: "jfrog_server",
+                    releaseRepo: "default-maven-virtual",
+                    snapshotRepo: "default-maven-virtual"
+                )
+            }
+    }
+/*
           stage('Docker Build & Push') {    
                   steps {
                           script{        // To add Scripted Pipeline sentences into a Declarative
@@ -59,6 +83,29 @@ pipeline {
                           sh "docker push bathurudocker/simpleapp:${VER_NUM}" 
                  } 
           }
+*/
+/*
+     stage('Deploy Into TEST') {
+       steps {   
+           sh "pwd"
+           sshagent(['aws-ap-south-pem']) {
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.235.99.115 sudo docker rm -f simpleapp || true"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.235.99.115 sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
+          }
+       }
+     }     
+     */
+     /*
+        stage('Deploy Into PROD') {
+             steps {  
+           sh "pwd"
+           sshagent(['aws-ap-south-pem']) {
+               sh "scp -o StrictHostKeyChecking=no simpleapp-deploy-k8s.yaml simpleapp-playbook-k8s.yml ec2-user@3.6.86.168:/home/ec2-user/"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@3.6.86.168 ansible-playbook  -i /etc/ansible/hosts /home/ec2-user/simpleapp-playbook-k8s.yml"
+          }
+             }
+     }*/
+
           /*
         stage('SonarQube Analysis') {
              steps {
@@ -88,25 +135,7 @@ pipeline {
                  //} 
           //}
           
-          stage('Deploy Into TEST') {
-              steps {   
-           sh "pwd"
-           sshagent(['aws-ap-south-pem']) {
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.235.99.115 sudo docker rm -f simpleapp || true"
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.235.99.115 sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
-          }
-              }
-     }     
-     /*
-        stage('Deploy Into PROD') {
-             steps {  
-           sh "pwd"
-           sshagent(['aws-ap-south-pem']) {
-               sh "scp -o StrictHostKeyChecking=no simpleapp-deploy-k8s.yaml simpleapp-playbook-k8s.yml ec2-user@3.6.86.168:/home/ec2-user/"
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@3.6.86.168 ansible-playbook  -i /etc/ansible/hosts /home/ec2-user/simpleapp-playbook-k8s.yml"
-          }
-             }
-     }*/
+
 
     }
     post {
