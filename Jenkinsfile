@@ -54,6 +54,17 @@ pipeline {
                     releaseRepo: "default-maven-virtual",
                     snapshotRepo: "default-maven-virtual"
                 )
+                rtMavenRun (
+                    tool: "maven", // Tool name from Jenkins configuration
+                    pom: 'pom.xml',
+                    goals: 'clean install',
+                    deployerId: "MAVEN_DEPLOYER",
+                    resolverId: "MAVEN_RESOLVER"
+                )
+                rtPublishBuildInfo (
+                    serverId: "jfrog_server"
+             )
+         }
             }
     }
 
