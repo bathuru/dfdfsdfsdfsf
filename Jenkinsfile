@@ -146,7 +146,7 @@ pipeline {
                           //sh  "docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
                  //} 
           //}
-          
+/*          
           stage('Deploy Into TEST') {
           steps {   
            sh "pwd"
@@ -156,6 +156,7 @@ pipeline {
           }
               }
      }     
+     */
      /*
         stage('Deploy Into PROD') {
              steps {  
