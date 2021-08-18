@@ -66,7 +66,7 @@ pipeline {
              )
          }
             }
-
+/*
      stage ('SonarQube Analysis') {
         steps {
               withSonarQubeEnv('sonar_server') {
@@ -75,6 +75,7 @@ pipeline {
               }
             }
       }    
+ */     
 /*
           stage('Docker Build & Push') {    
                   steps {
