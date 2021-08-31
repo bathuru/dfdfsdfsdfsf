@@ -71,7 +71,8 @@ pipeline {
         steps {
               withSonarQubeEnv('sonar_server') {
                  //sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
-                 sh '${mavenHome}/bin/mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=bathuru_simpleapp'
+                 //sh '${mavenHome}/bin/mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=bathuru_simpleapp'
+                 sh "${mavenHome}/bin/mvn sonar:sonar"
               }
             }
       }    
