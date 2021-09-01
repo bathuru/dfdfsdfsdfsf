@@ -121,7 +121,7 @@ pipeline {
     post {
            success {
                 echo 'Pipeline Sucessfully Finished'
-                mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", 
+                mail bcc: '', body: "<p>Example</p><p>Project: ${env.JOB_NAME} </p> <p>Build Number: ${env.BUILD_NUMBER} </p>  <p>URL de build: ${env.BUILD_URL} </p>", 
                           cc: '', 
                           from: '', 
                           replyTo: '', 
