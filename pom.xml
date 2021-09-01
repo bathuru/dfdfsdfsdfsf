@@ -7,10 +7,9 @@
 	<packaging>war</packaging>
 	<version>0.0.1.RELEASE</version>
 
-	<name>Maven Web Application</name>
+	<name>SimpleApp</name>
 	<url>http://apple.com</url>
-
-	<description>Maven Web Project</description>
+	<description>SimpleApp</description>
 
 	<organization>
 		<name>Apple Technologies</name>
