@@ -117,7 +117,18 @@ pipeline {
     post {
            success {
                 echo 'Pipeline Sucessfully Finished'
-                mail bcc: '', body: """<p>Example</p><p>Project: ${env.JOB_NAME} </p> <p>Build Number: ${env.BUILD_NUMBER} </p>  <p>URL de build: ${env.BUILD_URL} </p>""", 
+                mail bcc: '', 
+                body: """ Hi Team, 
+                Your project Build and Deployed successfully.
+
+Please find the details as below,
+	   Job Name: ${env.JOB_NAME}
+	   Job URL : ${env.JOB_URL}
+      Build Number: ${env.BUILD_NUMBER} 
+      URL de build: ${env.BUILD_URL}
+
+Thanks
+DevOps Team""", 
                           cc: '', 
                           from: '', 
                           replyTo: '', 
