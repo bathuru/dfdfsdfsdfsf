@@ -125,7 +125,7 @@ Please find the details as below,
 	   Job Name: ${env.JOB_NAME}
 	   Job URL : ${env.JOB_URL}
       Build Number: ${env.BUILD_NUMBER} 
-      URL de build: ${env.BUILD_URL}
+      Build URL: ${env.BUILD_URL}
 
 Thanks
 DevOps Team""", 
