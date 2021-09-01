@@ -78,7 +78,6 @@ pipeline {
             }
       }    
  
-
           stage('Docker Build & Push') {    
                   steps {
                           script{        // To add Scripted Pipeline sentences into a Declarative
@@ -98,18 +97,16 @@ pipeline {
                  } 
           }
 
-
-/*
      stage('Deploy Into TEST') {
        steps {   
            sh "pwd"
            sshagent(['aws-ap-south-pem']) {
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.235.99.115 sudo docker rm -f simpleapp || true"
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.235.99.115 sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.195.223  sudo docker rm -f simpleapp || true"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.195.223  sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
           }
        }
      }     
-     */
+    
      /*
         stage('Deploy Into PROD') {
              steps {  
