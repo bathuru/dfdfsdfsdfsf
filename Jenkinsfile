@@ -70,10 +70,8 @@ pipeline {
      stage ('SonarQube Analysis') {
         steps {
               withSonarQubeEnv('sonar_server') {
-                 //sh '${mavenHome}/bin/mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar'
-                 sh '${mavenHome}/bin/mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=simpleapp'
+                   sh '${mavenHome}/bin/mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=simpleapp'
                  //sh "${mavenHome}/bin/mvn sonar:sonar"
-                 //  sh '${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=simpleapp'
               }
             }
       }    
@@ -106,17 +104,15 @@ pipeline {
           }
        }
      }     
-    
-     /*
         stage('Deploy Into PROD') {
              steps {  
            sh "pwd"
            sshagent(['aws-ap-south-pem']) {
                sh "scp -o StrictHostKeyChecking=no simpleapp-deploy-k8s.yaml simpleapp-playbook-k8s.yml ec2-user@3.6.86.168:/home/ec2-user/"
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@3.6.86.168 ansible-playbook  -i /etc/ansible/hosts /home/ec2-user/simpleapp-playbook-k8s.yml"
+               //sh "ssh -o StrictHostKeyChecking=no ec2-user@3.6.86.168 ansible-playbook  -i /etc/ansible/hosts /home/ec2-user/simpleapp-playbook-k8s.yml"
           }
              }
-     }*/
+     }
     }
     post {
            success {
