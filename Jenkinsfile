@@ -121,7 +121,7 @@ pipeline {
     post {
            success {
                 echo 'Pipeline Sucessfully Finished'
-                mail bcc: '', body: 'Build Success', cc: '', from: '', replyTo: '', subject: "${env.JOB_NAME} Build Success", to: 'srinivas.bathuru@gmail.com'
+                mail bcc: '', body: 'Build Success', cc: '', from: '', replyTo: '', subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${env.BUILD_STATUS}", to: 'srinivas.bathuru@gmail.com'
            }
            failure {
                 echo 'Pipeline Failure'
