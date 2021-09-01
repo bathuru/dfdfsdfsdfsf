@@ -123,8 +123,8 @@ pipeline {
                 echo 'Pipeline Sucessfully Finished'
                 mail bcc: '', body: """<p>Example</p><p>Project: ${env.JOB_NAME} </p> <p>Build Number: ${env.BUILD_NUMBER} </p>  <p>URL de build: ${env.BUILD_URL} </p>""", 
                           cc: '', 
-                          from: '', 
-                          replyTo: '', 
+                          from: "admin_devops@gmail.com'', 
+                          replyTo: "", 
                           subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Sucess !!!", 
                           to: 'srinivas.bathuru@gmail.com'
            }
