@@ -78,7 +78,7 @@ pipeline {
             }
       }    
  
-/*
+
           stage('Docker Build & Push') {    
                   steps {
                           script{        // To add Scripted Pipeline sentences into a Declarative
@@ -97,7 +97,8 @@ pipeline {
                           sh "docker push bathurudocker/simpleapp:${VER_NUM}" 
                  } 
           }
-*/
+
+
 /*
      stage('Deploy Into TEST') {
        steps {   
