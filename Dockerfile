@@ -1,5 +1,5 @@
 FROM tomcat:alpine  as build
-MAINTAINER srinivas.bathuru@gmail.com
+LABEL MAINTAINER=srinivas.bathuru@gmail.com
 
 ENV TOMCAT_PATH /usr/local/tomcat/webapps/
 ENV APP_NAME simpleapp
