@@ -141,7 +141,8 @@ DevOps Team""",
 
 
            always {
-emailext attachLog: true, body: '''Hi Team, 
+emailext attachLog: true, 
+ body: '''Hi Team, 
 	   
 Your project Build and Deployed successfully.
 
@@ -152,8 +153,9 @@ Please find the details as below,
        Build Status : $BUILD_STATUS
 	   
 Thanks
-DevOps Team 2''', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', 
-to: 'srinivas.bathuru@gmail.com'
+DevOps Team 2''', 
+     subject: '$BUILD_STATUS - $PROJECT_NAME - Build # $BUILD_NUMBER ', 
+             to: 'srinivas.bathuru@gmail.com'
            }
     }
 }
