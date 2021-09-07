@@ -26,5 +26,11 @@
         group: ec2-user
         mode: "744"
 
-    - name: Deploy ingress in kubernets
+    - name: Clone ingress-nginx from github
+      command: kubectl apply -f ingress-nginx/deploy/static/provider/aws/deploy.yaml
+
+    - name: Deploy ingress-nginx
+      command: kubectl apply -f ingress-nginx/deploy/static/provider/aws/deploy.yaml
+
+    - name: Deploy ingress Rules
       command: kubectl apply -f simpleapp-ingress-rules.yaml
