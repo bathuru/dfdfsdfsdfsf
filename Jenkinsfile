@@ -130,7 +130,7 @@ pipeline {
     post {
            success {
                 echo 'Pipeline Sucessfully Finished'
-                mail bcc: '', 
+ /*               mail bcc: '', 
                 body: """ Hi Team, 
                 Your project Build and Deployed successfully.
 
@@ -146,13 +146,13 @@ DevOps Team""",
                           from: '', 
                           replyTo: '', 
                           subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Sucess !!!", 
-                          to: 'srinivas.bathuru@gmail.com'
+                          to: 'srinivas.bathuru@gmail.com'  */
            }
            failure {
                 echo 'Pipeline Failure'
            }
 
-
+/*
            always {
 emailext attachLog: true, 
  body: '''Hi Team, 
@@ -169,6 +169,6 @@ Thanks
 DevOps Team 2''', 
      subject: '$BUILD_STATUS - $PROJECT_NAME - Build # $BUILD_NUMBER ', 
              to: 'srinivas.bathuru@gmail.com'
-           }
+           }  */
     }
 }
