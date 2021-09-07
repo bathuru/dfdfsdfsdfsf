@@ -27,7 +27,7 @@
         mode: "744"
 
     - name: Clone ingress-nginx from github
-      command: kubectl apply -f ingress-nginx/deploy/static/provider/aws/deploy.yaml
+      command: git clone https://github.com/kubernetes/ingress-nginx.git
 
     - name: Deploy ingress-nginx
       command: kubectl apply -f ingress-nginx/deploy/static/provider/aws/deploy.yaml
