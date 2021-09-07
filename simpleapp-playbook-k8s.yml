@@ -26,8 +26,12 @@
         group: ec2-user
         mode: "744"
 
-    - name: Clone ingress-nginx from github
-      command: git clone https://github.com/kubernetes/ingress-nginx.git
+    - name: Just get information about the repository whether or not it has already been cloned locally
+      ansible.builtin.git:
+        repo: "https://github.com/kubernetes/ingress-nginx.git"
+        dest: /home/ec2-user
+        clone: yes
+        update: no
 
     - name: Deploy ingress-nginx
       command: kubectl apply -f ingress-nginx/deploy/static/provider/aws/deploy.yaml
