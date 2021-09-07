@@ -30,8 +30,6 @@
       ansible.builtin.git:
         repo: "https://github.com/kubernetes/ingress-nginx.git"
         dest: /home/ec2-user
-        clone: no
-        update: no
 
     - name: Deploy ingress-nginx
       command: kubectl apply -f ingress-nginx/deploy/static/provider/aws/deploy.yaml
