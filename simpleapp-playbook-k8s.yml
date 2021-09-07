@@ -29,10 +29,10 @@
     - name: Just get information about the repository whether or not it has already been cloned locally
       ansible.builtin.git:
         repo: "https://github.com/kubernetes/ingress-nginx.git"
-        dest: /home/ec2-user
+        dest: /home/ec2-user/git
 
     - name: Deploy ingress-nginx
-      command: kubectl apply -f ingress-nginx/deploy/static/provider/aws/deploy.yaml
+      command: kubectl apply -f git/ingress-nginx/deploy/static/provider/aws/deploy.yaml
 
     - name: Deploy ingress Rules
       command: kubectl apply -f simpleapp-ingress-rules.yaml
