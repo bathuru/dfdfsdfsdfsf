@@ -32,7 +32,7 @@
         dest: /home/ec2-user/git
 
     - name: Deploy ingress-nginx
-      command: kubectl apply -f git/ingress-nginx/deploy/static/provider/aws/deploy.yaml
+      command: kubectl apply -f /home/ec2-user/git/ingress-nginx/deploy/static/provider/aws/deploy.yaml
 
     - name: Deploy ingress Rules
       command: kubectl apply -f simpleapp-ingress-rules.yaml
