@@ -106,15 +106,7 @@ pipeline {
           }
        }
      }     
- /*      stage('Deploy Into TEST') {
-             steps {  
-           sh "pwd"
-           sshagent(['aws-ap-south-pem']) {
-               sh "scp -o StrictHostKeyChecking=no simpleapp-deploy-k8s.yaml simpleapp-playbook-k8s.yml ec2-user@ansible.bathur.xyz:/home/ec2-user/"
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@ansible.bathur.xyz   ansible-playbook  -i /etc/ansible/hosts /home/ec2-user/simpleapp-playbook-k8s.yml"
-          }
-             }
-     }*/
+
          stage('Deploy Into PROD') {
              steps {  
            sh "pwd"
