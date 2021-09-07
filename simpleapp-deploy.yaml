@@ -1,0 +1,37 @@
+#simpleapp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simpleapp-service
+  labels:
+    app: simpleapp-app
+spec:
+  selector:
+    app: simpleapp-app
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simpleapp-deploy
+spec:
+  selector:
+    matchLabels:
+      app: simpleapp-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: simpleapp-app
+    spec:
+      containers:
+        - name: simpleapp
+          image: bathurudocker/simpleapp:1.0.101
+          ports:
+            - containerPort: 8080
+#  http://3.6.94.232:32000/simpleapp/
+

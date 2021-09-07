@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: sapp1.bathur.xyz
+      http:
+        paths:
+          - path: /simpleapp
+            pathType: Prefix
+            backend:
+              service:
+                name: simpleapp-service
+                port:
+                  number: 80
+
+    - host: sapp2.bathur.xyz
+      http:
+        paths:
+          - path: /simpleapp
+            pathType: Prefix
+            backend:
+              service:
+                name: simpleapp-service
+                port:
+                  number: 80

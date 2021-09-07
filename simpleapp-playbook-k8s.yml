@@ -1,19 +1,30 @@
 # play-book start & end with --- (Three dots)
 ---
 # Header Section
-  - name: Play to Deploy simpleapp in Kubernetes
-    hosts: kubservers
-    become_user: ec2-user
+- name: Play to Deploy simpleapp in Kubernetes
+  hosts: kubservers
+  become_user: ec2-user
 
-# Tasks Section
-    tasks:  
-     - name: Copy deployment file from Jekins Server into Kubernetes Server
-       copy:
-         src: /home/ec2-user/simpleapp-deploy-k8s.yaml
-         dest: /home/ec2-user/simpleapp-deploy-k8s.yaml
-         owner: ec2-user
-         group: ec2-user
-         mode: '744'
+  # Tasks Section
+  tasks:
+    - name: Copy deployment file from Jekins Server into Kubernetes Server
+      copy:
+        src: /home/ec2-user/simpleapp-deploy.yaml
+        dest: /home/ec2-user/simpleapp-deploy.yaml
+        owner: ec2-user
+        group: ec2-user
+        mode: "744"
 
-     - name: Deploy simpleapp in kubernets
-       command: kubectl apply -f simpleapp-deploy-k8s.yaml
+    - name: Deploy simpleapp in kubernets
+      command: kubectl apply -f simpleapp-deploy.yaml
+
+    - name: Copy Ingress file from Jekins Server into Kubernetes Server
+      copy:
+        src: /home/ec2-user/simpleapp-ingress-rules.yaml
+        dest: /home/ec2-user/simpleapp-ingress-rules.yaml
+        owner: ec2-user
+        group: ec2-user
+        mode: "744"
+
+    - name: Deploy ingress in kubernets
+      command: kubectl apply -f simpleapp-ingress-rules.yaml
