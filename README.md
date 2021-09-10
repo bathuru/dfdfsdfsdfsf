@@ -1,10 +1,9 @@
 
  ## How to Access
 1) kubectl get svc   ##Get load balancer
-2) Update above load balncer in godaddy site   >  ( sapp1 - LB )
+2) update above "Load Balncer Name" in  "Go-daddy site"   >  ( sapp1 - LB )
 
-http://sapp1.bathur.xyz:8080/simpleapp
-
+http://sapp1.bathur.xyz/simpleapp/
 
 ## Cleanup Setps
 
