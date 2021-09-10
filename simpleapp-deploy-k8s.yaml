@@ -11,9 +11,9 @@ spec:
     app: simpleapp-app
   type: NodePort
   ports:
-  - nodePort: 30001
-    port: 8080
-    targetPort: 8080
+    - nodePort: 30001
+      port: 8080
+      targetPort: 8080
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -31,10 +31,8 @@ spec:
     spec:
       containers:
         - name: simpleapp
-          image: bathurudocker/simpleapp:latest
+          image: bathurudocker/devops-simpleapp:latest
           ports:
             - containerPort: 8080
-
-
 #  http://3.6.94.232:32000/simpleapp/
 

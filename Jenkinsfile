@@ -87,13 +87,15 @@ pipeline {
                                           //  do nothing if there is an exception
                                           }
                             }
-                          sh "docker build -t bathurudocker/simpleapp:${VER_NUM} ."
-                          sh "docker image tag bathurudocker/simpleapp:${VER_NUM}  bathurudocker/simpleapp:latest"
+                          //sh "docker build -t bathurudocker/devops-simpleapp:${VER_NUM} ."
+                          sh "docker build -t bathurudocker/devops-simpleapp:latest ."
+                          //sh "docker image tag bathurudocker/devops-simpleapp:${VER_NUM}  bathurudocker/devops-simpleapp:latest"
                           withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'dockerpwd')]) {
                                  sh "docker login -u bathurudocker -p ${dockerpwd}"
                          }
-                          sh "docker push bathurudocker/simpleapp:${VER_NUM}" 
-                          sh "docker rmi bathurudocker/simpleapp" 
+                          //sh "docker push bathurudocker/devops-simpleapp:${VER_NUM}" 
+                          sh "docker push bathurudocker/devops-simpleapp:latest" 
+                          sh "docker rmi bathurudocker/devops-simpleapp" 
                  } 
           }
 
@@ -101,8 +103,9 @@ pipeline {
        steps {   
            sh "pwd"
            sshagent(['aws-ap-south-pem']) {
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker rm -f simpleapp || true"
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/simpleapp:${VER_NUM}"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker rm -f devops-simpleapp || true"
+               //sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/devops-simpleapp:${VER_NUM}"
+              sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/devops-simpleapp:latest"
           }
        }
      }     
