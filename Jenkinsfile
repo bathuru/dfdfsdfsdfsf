@@ -80,7 +80,7 @@ pipeline {
                   steps {
                           script{        // To add Scripted Pipeline sentences into a Declarative
                                     try{
-                                            sh "echo pwd"
+                                            sh "pwd"
                                              //sh "docker rm -f simpleapp || true"
                                              //sh "docker rmi bathurudocker/simpleapp || true"       //sh 'docker rmi $(docker images bathurudocker/simpleapp)''
                                           }catch(error){
