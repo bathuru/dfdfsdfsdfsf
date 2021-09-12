@@ -119,7 +119,16 @@ pipeline {
           }
              }
      }    
-
+    stage('Build Helm Charts') {
+            
+            steps {
+              dir('charts') {
+             sh "/usr/local/bin/helm package iwayq-web-app"
+					   sh "sudo /usr/local/bin/helm push-artifactory --username prreddy1986@gmail.com --password mko09ijN iwayq-web-app-0.0.1.tgz https://iwayqweb.jfrog.io/artifactory/iwayq"
+					  }
+          }
+            
+        } 
 
     }
     post {
