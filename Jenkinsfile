@@ -104,8 +104,8 @@ pipeline {
            sh "pwd"
            sshagent(['aws-ap-south-pem']) {
                sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker rm -f bathurudocker/devops-simpleapp || true"
-               //sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 8010:8080 --name simpleapp bathurudocker/devops-simpleapp:${VER_NUM}"
-              sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 8010:8080 --name devops-simpleapp bathurudocker/devops-simpleapp:latest"
+               //sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 80:8080 --name simpleapp bathurudocker/devops-simpleapp:${VER_NUM}"
+              sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 80:8080 --name devops-simpleapp bathurudocker/devops-simpleapp:latest"
           }
        }
      }     
