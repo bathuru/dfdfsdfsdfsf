@@ -118,7 +118,8 @@ pipeline {
                sh "ssh -o StrictHostKeyChecking=no ec2-user@ansible.bathur.xyz   ansible-playbook  -i /etc/ansible/hosts /home/ec2-user/simpleapp-playbook-k8s.yml"
           }
              }
-     }    
+     } 
+     /*   
          stage('Build Helm Charts') {
             steps {
               dir('charts') {
@@ -126,8 +127,8 @@ pipeline {
 					   sh "sudo /usr/local/bin/helm push-artifactory --username prreddy1986@gmail.com --password mko09ijN iwayq-web-app-0.0.1.tgz https://iwayqweb.jfrog.io/artifactory/iwayq"
 					  }
           }
-        } 
-        
+        } */
+
     }
     post {
            success {
