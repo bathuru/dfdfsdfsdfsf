@@ -1,4 +1,0 @@
-# nameOverride: simpleapp
-
-metadata:
-  namespace: production
