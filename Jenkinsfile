@@ -130,7 +130,7 @@ pipeline {
             steps {
               dir('charts') {
              sh "/usr/local/bin/helm package simpleapp"
-					   sh "sudo /usr/local/bin/helm push-artifactory --username srinivas.bathuru@gmail.com --password AP8d6ghvZSZjJBDbmqjqwz12opx   simpleapp-0.0.1.tgz https://bathuru.jfrog.io/artifactory/simpleapp-helm"
+					   sh "/usr/local/bin/helm push-artifactory --username srinivas.bathuru@gmail.com --password AP8d6ghvZSZjJBDbmqjqwz12opx   simpleapp-0.0.1.tgz https://bathuru.jfrog.io/artifactory/simpleapp-helm"
 					  }
           }
         } 
