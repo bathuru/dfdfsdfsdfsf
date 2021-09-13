@@ -125,7 +125,7 @@ pipeline {
              }
      } 
      */
-     /*   
+     
          stage('Build Helm Charts') {
             steps {
               dir('charts') {
@@ -133,7 +133,7 @@ pipeline {
 					   sh "sudo /usr/local/bin/helm push-artifactory --username srinivas.bathuru@gmail.com --password AP8d6ghvZSZjJBDbmqjqwz12opx   simpleapp-0.0.1.tgz https://bathuru.jfrog.io/artifactory/simpleapp-helm"
 					  }
           }
-        } */
+        } 
 
     }
     post {
