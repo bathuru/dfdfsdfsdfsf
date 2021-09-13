@@ -18,7 +18,7 @@ pipeline {
                      git credentialsId: 'github-credentials' , url: 'https://github.com/bathuru/simpleapp.git',  branch: 'master'   
                 }
            }
-
+/*
          stage ('Multiple Builds') {
               parallel {
                   stage ("Maven Build") {
@@ -35,6 +35,8 @@ pipeline {
                   }
               }
           }
+          */
+    /*      
     stage ('Artifactory configuration') {
             steps {
                 rtServer (
@@ -66,7 +68,8 @@ pipeline {
              )
          }
             }
-
+    */        
+/*
      stage ('SonarQube Analysis') {
         steps {
               withSonarQubeEnv('sonar_server') {
@@ -75,7 +78,8 @@ pipeline {
               }
             }
       }    
- 
+      */
+ /*
           stage('Docker Build & Push') {    
                   steps {
                           script{        // To add Scripted Pipeline sentences into a Declarative
@@ -98,7 +102,8 @@ pipeline {
                           sh "docker rmi bathurudocker/devops-simpleapp" 
                  } 
           }
-
+          */
+/*
      stage('Deploy Into DEV') {
        steps {   
            sh "pwd"
@@ -119,12 +124,13 @@ pipeline {
           }
              }
      } 
+     */
      /*   
          stage('Build Helm Charts') {
             steps {
               dir('charts') {
-             sh "/usr/local/bin/helm package iwayq-web-app"
-					   sh "sudo /usr/local/bin/helm push-artifactory --username prreddy1986@gmail.com --password mko09ijN iwayq-web-app-0.0.1.tgz https://iwayqweb.jfrog.io/artifactory/iwayq"
+             sh "/usr/local/bin/helm package simpleapp"
+					   sh "sudo /usr/local/bin/helm push-artifactory --username srinivas.bathuru@gmail.com --password AP8d6ghvZSZjJBDbmqjqwz12opx   simpleapp-0.0.1.tgz https://bathuru.jfrog.io/artifactory/simpleapp-helm"
 					  }
           }
         } */

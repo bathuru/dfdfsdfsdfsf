@@ -1,0 +1,23 @@
+#simpleapp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simpleapp-deploy
+  namespace: { { .Values.namespace } }
+spec:
+  selector:
+    matchLabels:
+      app: simpleapp-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: simpleapp-app
+    spec:
+      containers:
+        - name: simpleapp
+          image: bathurudocker/devops-simpleapp:latest
+          ports:
+            - containerPort: 8080
+#  http://3.6.94.232:32000/simpleapp/
