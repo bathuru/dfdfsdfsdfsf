@@ -124,7 +124,7 @@ pipeline {
        }
      }     
 
-         stage('Deploy Into PROD') {
+         stage('Deploy Into TEST') {
              steps {  
            sh "pwd"
            sshagent(['aws-ap-south-pem']) {
@@ -134,7 +134,7 @@ pipeline {
              }
      } 
      */
-     	  stage ('Deploy Helm Charts')  {
+     	  stage ('Deploy Into PROD - Helm Charts')  {
 	      steps {
            sh "helm version"
           
