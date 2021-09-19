@@ -7,6 +7,7 @@ pipeline {
           VER_NUM = "1.0.${BUILD_NUMBER}";
           REL_NUM = "1.0.${BUILD_NUMBER}.RELEASE";
           mavenHome =  tool name: "maven", type: "maven"
+          namespace = "default"
      }
     tools{
           maven 'maven'
@@ -103,6 +104,14 @@ pipeline {
                  } 
           }
           */
+         stage('Build Helm Charts') {
+            steps {
+              dir('charts') {
+             sh "/usr/local/bin/helm package simpleapp"
+					   sh "/usr/local/bin/helm push-artifactory --username srinivas.bathuru@gmail.com --password AP8d6ghvZSZjJBDbmqjqwz12opx   simpleapp-0.0.2.tgz https://bathuru.jfrog.io/artifactory/simpleapp-helm"
+					  }
+          }
+        } 
 /*
      stage('Deploy Into DEV') {
        steps {   
@@ -125,16 +134,19 @@ pipeline {
              }
      } 
      */
-     
-         stage('Build Helm Charts') {
-            steps {
-              dir('charts') {
-             sh "/usr/local/bin/helm package simpleapp"
-					   sh "/usr/local/bin/helm push-artifactory --username srinivas.bathuru@gmail.com --password AP8d6ghvZSZjJBDbmqjqwz12opx   simpleapp-0.0.2.tgz https://bathuru.jfrog.io/artifactory/simpleapp-helm"
-					  }
-          }
-        } 
-
+     	  stage ('Deploy Helm Charts')  {
+	      steps {
+           sh "helm version"
+          
+           dir("iwayq-web-app"){
+                    sh 'pwd'
+                    sh "sudo helm repo add simpleapp-helm  https://bathuru.jfrog.io/artifactory/simpleapp-helm --username srinivas.bathuru@gmail.com  --password AP8d6ghvZSZjJBDbmqjqwz12opx"
+                    sh "sudo helm repo update"
+                    sh "sudo helm upgrade simpleapp-helm  --install --namespace ${namespace}  --force ."
+                    sh "sudo helm list -a --namespace ${namespace}"
+                }
+        }
+      }
     }
     post {
            success {
