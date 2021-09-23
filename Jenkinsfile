@@ -19,7 +19,7 @@ pipeline {
                      git credentialsId: 'github-credentials' , url: 'https://github.com/bathuru/simpleapp.git',  branch: 'master'   
                 }
            }
-/*
+
          stage ('Multiple Builds') {
               parallel {
                   stage ("Maven Build") {
@@ -36,8 +36,8 @@ pipeline {
                   }
               }
           }
-          */
-    /*      
+          
+    
     stage ('Artifactory configuration') {
             steps {
                 rtServer (
@@ -69,8 +69,8 @@ pipeline {
              )
          }
             }
-    */        
-/*
+
+
      stage ('SonarQube Analysis') {
         steps {
               withSonarQubeEnv('sonar_server') {
@@ -79,8 +79,8 @@ pipeline {
               }
             }
       }    
-      */
- /*
+      
+ 
           stage('Docker Build & Push') {    
                   steps {
                           script{        // To add Scripted Pipeline sentences into a Declarative
@@ -103,7 +103,7 @@ pipeline {
                           sh "docker rmi bathurudocker/devops-simpleapp" 
                  } 
           }
-          */
+          
          stage('Build Helm Charts') {
             steps {
               dir('charts') {
@@ -112,7 +112,7 @@ pipeline {
 					  }
           }
         } 
-/*
+
      stage('Deploy Into DEV') {
        steps {   
            sh "pwd"
@@ -123,7 +123,7 @@ pipeline {
           }
        }
      }     
-
+/*
          stage('Deploy Into TEST') {
              steps {  
            sh "pwd"
