@@ -77,7 +77,7 @@ pipeline {
               }
             }
       }    
-      
+      /*
           stage('Docker Build & Push') {    
                   steps {
                           script{        // To add Scripted Pipeline sentences into a Declarative
@@ -100,7 +100,7 @@ pipeline {
                           sh "docker rmi bathurudocker/devops-simpleapp" 
                  } 
           }
-          
+          */
          stage('Build Helm Charts') {
             steps {
               dir('charts') {
@@ -109,7 +109,7 @@ pipeline {
 					  }
           }
         } 
-
+/*
      stage('Deploy Into DEV') {
        steps {   
            sh "pwd"
@@ -119,7 +119,7 @@ pipeline {
               sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 80:8080 --name devops-simpleapp bathurudocker/devops-simpleapp:latest"
           }
        }
-     }     
+     }     */
 /*
          stage('Deploy Into TEST') {
              steps {  
@@ -131,6 +131,7 @@ pipeline {
              }
      } 
      */
+     /*
      	  stage ('Deploy Into PROD - Helm Charts')  {
 	      steps {
            sh "helm version"
@@ -144,6 +145,8 @@ pipeline {
                 }
         }
       }
+*/
+
     }
     post {
            success {
