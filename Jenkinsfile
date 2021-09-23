@@ -104,7 +104,7 @@ pipeline {
          stage('Build Helm Charts') {
             steps {
               dir('charts') {
-             sh "/usr/local/bin/helm package simpleapp"
+                       sh "helm package simpleapp"
 					   sh "helm push-artifactory --username srinivas.bathuru@gmail.com --password AP8d6ghvZSZjJBDbmqjqwz12opx   simpleapp-0.0.2.tgz https://bathuru.jfrog.io/artifactory/simpleapp-helm"
 					  }
           }
