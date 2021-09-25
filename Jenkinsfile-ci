@@ -77,7 +77,7 @@ pipeline {
               }
             }
       }    
-      /*
+      
           stage('Docker Build & Push') {    
                   steps {
                           script{        // To add Scripted Pipeline sentences into a Declarative
@@ -100,7 +100,7 @@ pipeline {
                           sh "docker rmi bathurudocker/devops-simpleapp" 
                  } 
           }
-          */
+          
          stage('Build Helm Charts') {
             steps {
               dir('charts') {
@@ -109,43 +109,6 @@ pipeline {
 					  }
           }
         } 
-/*
-     stage('Deploy Into DEV') {
-       steps {   
-           sh "pwd"
-           sshagent(['aws-ap-south-pem']) {
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker rm -f bathurudocker/devops-simpleapp || true"
-               //sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 80:8080 --name simpleapp bathurudocker/devops-simpleapp:${VER_NUM}"
-              sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 80:8080 --name devops-simpleapp bathurudocker/devops-simpleapp:latest"
-          }
-       }
-     }     */
-/*
-         stage('Deploy Into TEST') {
-             steps {  
-           sh "pwd"
-           sshagent(['aws-ap-south-pem']) {
-               sh "scp -o StrictHostKeyChecking=no simpleapp-deploy.yaml  simpleapp-ingress-rules.yaml  simpleapp-playbook-k8s.yml ec2-user@ansible.bathur.xyz:/home/ec2-user/"
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@ansible.bathur.xyz   ansible-playbook  -i /etc/ansible/hosts /home/ec2-user/simpleapp-playbook-k8s.yml"
-          }
-             }
-     } 
-     */
-     /*
-     	  stage ('Deploy Into PROD - Helm Charts')  {
-	      steps {
-           sh "helm version"
-          
-           dir("iwayq-web-app"){
-                    sh 'pwd'
-                    sh "sudo helm repo add simpleapp-helm  https://bathuru.jfrog.io/artifactory/simpleapp-helm --username srinivas.bathuru@gmail.com  --password AP8d6ghvZSZjJBDbmqjqwz12opx"
-                    sh "sudo helm repo update"
-                    sh "sudo helm upgrade simpleapp-helm  --install --namespace ${namespace}  --force ."
-                    sh "sudo helm list -a --namespace ${namespace}"
-                }
-        }
-      }
-*/
 
     }
     post {
