@@ -39,6 +39,7 @@ pipeline {
 	      steps {
            sh "helm version"
            dir("iwayq-web-app"){
+             sshagent(['aws-ap-south-pem']) {
                     sh 'pwd'
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@k8s-bootstrap.bathur.xyz   sudo helm repo add simpleapp-helm  https://bathuru.jfrog.io/artifactory/simpleapp-helm --username srinivas.bathuru@gmail.com  --password AP8d6ghvZSZjJBDbmqjqwz12opx"
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@k8s-bootstrap.bathur.xyz   sudo helm repo update"
@@ -48,6 +49,7 @@ pipeline {
                     //sh "sudo helm repo update"
                     //sh "sudo helm upgrade simpleapp-helm  --install --namespace ${namespace}  --force ."
                     //sh "sudo helm list -a --namespace ${namespace}"
+                }
                 }
         }
       }
