@@ -12,3 +12,5 @@ kubectl delete -f simpleapp-ingress-rules.yaml
 
 ## Local Access
 http://127.0.0.1:8010/simpleapp/
+
+
