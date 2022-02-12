@@ -42,7 +42,7 @@ pipeline {
                                           }
                             }
                           sh "docker build -t bathurudocker/devops-simpleapp:latest ."
-                          withCredentials([usernameColonPassword(credentialsId: 'dockerHubPwd', variable: 'dockerpwd')]) {
+                          withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'dockerpwd')]) {
                                  sh "docker login -u bathurudocker -p ${dockerpwd}"
                          }
                           sh "docker push bathurudocker/devops-simpleapp:latest" 
