@@ -1,7 +1,7 @@
 
    
 pipeline {
-   agent { aws-jenkins-slave }
+   agent { label 'aws-jenkins-slave' }
     triggers {
           pollSCM('4 4 4 * *')
     }
