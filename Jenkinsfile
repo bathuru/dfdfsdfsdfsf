@@ -52,7 +52,7 @@ pipeline {
             stage('Deploy Into DEV') {
        steps {   
            sh "pwd"
-           sshagent(['aws-ap-south-pem']) {
+           sshagent(['aws-private-key-mumbai']) {
                sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker rm -f devops-simpleapp || true"
                sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 8020:8080 --name devops-simpleapp bathurudocker/devops-simpleapp:latest"
           }
