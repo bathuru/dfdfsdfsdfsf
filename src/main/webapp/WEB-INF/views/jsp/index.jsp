@@ -51,7 +51,7 @@
 			</div>
 			<div class=" container">
 				<div class="row">
-					<div class="col-md-8"> </br></br></br></br></br>
+					<div class="col-md-8"> </br></br>
 						<h4>Srini Devops Lab, Hyd.</h4>
 						<h5>Contact @ +91-9876543210</h5>
 					</div>
