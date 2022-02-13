@@ -49,7 +49,15 @@ pipeline {
                           sh "docker rmi bathurudocker/devops-simpleapp" 
                  } 
           }
-       
+            stage('Deploy Into DEV') {
+       steps {   
+           sh "pwd"
+           sshagent(['aws-ap-south-pem']) {
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker rm -f devops-simpleapp || true"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 8020:8080 --name devops-simpleapp bathurudocker/devops-simpleapp:latest"
+          }
+       }
+     }   
     }
     post { success { echo 'Pipeline Sucessfully Finished' }
            failure { echo 'Pipeline Failure' }
