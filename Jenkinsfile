@@ -49,6 +49,7 @@ pipeline {
                           sh "docker rmi bathurudocker/devops-simpleapp" 
                  } 
           }
+       
     }
     post { success { echo 'Pipeline Sucessfully Finished' }
            failure { echo 'Pipeline Failure' }
