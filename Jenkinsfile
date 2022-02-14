@@ -62,21 +62,23 @@ pipeline {
     post { success { echo 'Pipeline Sucessfully Finished' }
            failure { echo 'Pipeline Failure' }
                      always {
-emailext attachLog: true, 
- body: '''Hi Team, 
-	   
-Your project Build and Deployed successfully.
+               mail bcc: '', 
+                body: """ Hi Team, 
+                Your project Build and Deployed successfully.
 
 Please find the details as below,
-	   Job Name: $PROJECT_NAME 
-	   Job URL : $BUILD_URL
-       Build Number : $BUILD_NUMBER
-       Build Status : $BUILD_STATUS
-	   
+	   Job Name: ${env.JOB_NAME}
+	   Job URL : ${env.JOB_URL}
+      Build Number: ${env.BUILD_NUMBER} 
+      Build URL: ${env.BUILD_URL}
+
 Thanks
-DevOps Team 2''', 
-     subject: '$BUILD_STATUS - $PROJECT_NAME - Build # $BUILD_NUMBER ', 
-             to: 'srinivas.bathuru@gmail.com'
+DevOps Team""", 
+                          cc: '', 
+                          from: '', 
+                          replyTo: '', 
+                          subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Sucess !!!", 
+                          to: 'srinivas.bathuru@gmail.com'
            } 
          }
 }
