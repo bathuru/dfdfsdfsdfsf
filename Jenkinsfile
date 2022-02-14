@@ -61,5 +61,22 @@ pipeline {
     }
     post { success { echo 'Pipeline Sucessfully Finished' }
            failure { echo 'Pipeline Failure' }
+                     always {
+emailext attachLog: true, 
+ body: '''Hi Team, 
+	   
+Your project Build and Deployed successfully.
+
+Please find the details as below,
+	   Job Name: $PROJECT_NAME 
+	   Job URL : $BUILD_URL
+       Build Number : $BUILD_NUMBER
+       Build Status : $BUILD_STATUS
+	   
+Thanks
+DevOps Team 2''', 
+     subject: '$BUILD_STATUS - $PROJECT_NAME - Build # $BUILD_NUMBER ', 
+             to: 'srinivas.bathuru@gmail.com'
+           } 
          }
 }
