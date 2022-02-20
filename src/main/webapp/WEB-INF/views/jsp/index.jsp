@@ -55,7 +55,7 @@
 					<div class="col-md-8"> </br>
 						<h4>Srini Devops Lab, Hyd.</h4>
 						<h5>Contact @ +91-9876543210</h5>
-						<h3>${ipaddress}</h3>
+						<h5>${ipaddress}</h5>
 					</div>
 				</div>
 				<hr>
