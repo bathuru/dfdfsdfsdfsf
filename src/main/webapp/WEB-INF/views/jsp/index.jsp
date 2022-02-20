@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 		<!DOCTYPE html>
 		<html lang="en">
 
@@ -51,15 +52,17 @@
 			</div>
 			<div class=" container">
 				<div class="row">
-					<div class="col-md-8"> </br></br>
+					<div class="col-md-8"> </br>
 						<h4>Srini Devops Lab, Hyd.</h4>
 						<h5>Contact @ +91-9876543210</h5>
+						<h3>${ipaddress}</h3>
 					</div>
 				</div>
 				<hr>
 				<footer>
 					<h5>&copy; Srini Labs 2021</h5>
-					<h6 id='ct' style="text-align:right;"></h6>
+					<h6 id='ct' style=" text-align:right;">
+					</h6>
 				</footer>
 			</div>
 

@@ -2,6 +2,7 @@ package com.apple.simpleapp.web;
 
 import java.util.Map;
 import org.slf4j.Logger;
+import java.net.*;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,16 @@ public class WelcomeController {
 		logger.debug("index() is executed!");
 		model.put("title", helloWorldService.getTitle(""));
 		model.put("msg", helloWorldService.getDesc());
+
+		String ip = "127.1.1.1 - Hardcode";
+		InetAddress inetAddress = null;
+		try {
+			inetAddress = InetAddress.getLocalHost();
+			ip = inetAddress.getHostAddress();
+		} catch (UnknownHostException e) {
+			ip = "127.1.1.2 - Exception";
+		}
+		model.put("ipaddress", inetAddress);
 		return "index";
 	}
 
