@@ -37,7 +37,39 @@ pipeline {
                  //sh "${mavenHome}/bin/mvn sonar:sonar"
               }
             }
-      }    /*
+      }
+          stage ('Artifactory configuration') {
+            steps {
+                rtServer (
+                    id: "jfrog_server",
+                    url: "https://jfrogsrini.jfrog.io/artifactory",
+                    credentialsId: "jfrog_cred"
+                )
+                rtMavenDeployer (
+                    id: "MAVEN_DEPLOYER",
+                    serverId: "jfrog_server",
+                    releaseRepo: "simpleapp-libs-release-local",
+                    snapshotRepo: "simpleapp-libs-snapshot-local"
+                )
+                rtMavenResolver (
+                    id: "MAVEN_RESOLVER",
+                    serverId: "jfrog_server",
+                    releaseRepo: "default-maven-virtual",
+                    snapshotRepo: "default-maven-virtual"
+                )
+                rtMavenRun (
+                    tool: "maven", // Tool name from Jenkins configuration
+                    pom: 'pom.xml',
+                    goals: 'clean install',
+                    deployerId: "MAVEN_DEPLOYER",
+                    resolverId: "MAVEN_RESOLVER"
+                )
+                rtPublishBuildInfo (
+                    serverId: "jfrog_server"
+             )
+         }
+            }
+          /*
           stage('Docker Build & Push') {    
                   steps {
                           script{        // To add Scripted Pipeline sentences into a Declarative
