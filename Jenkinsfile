@@ -101,7 +101,7 @@ pipeline {
     }
     post { success { echo 'Pipeline Sucessfully Finished' }
            failure { echo 'Pipeline Failure' }
-                     always {
+    /*                 always {
                mail bcc: '', 
                 body: """ Hi Team, 
                 Your project got Build and Deployed successfully!!!
@@ -119,6 +119,6 @@ DevOps Team""",
                           replyTo: '', 
                           subject: "Sucess !!! - ${env.JOB_NAME} - Build # ${env.BUILD_NUMBER}", 
                           to: 'srinivas.bathuru@gmail.com'
-           } 
+           } */
          }
 }
