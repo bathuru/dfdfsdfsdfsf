@@ -17,14 +17,12 @@ pipeline {
     stages {
            stage ('Git Checkout') {
                  steps {
-                     echo "Heloo!!!!";
                      git credentialsId: 'github-credentials' , url: 'https://github.com/bathuru/simpleapp.git',  branch: 'master'   
                 }
            }
 
          stage ('Maven Build') {
                         steps {
-                             echo "Hello 222";
                             //sh "${mavenHome}/bin/mvn clean versions:set -Dver=${VER_NUM} package "
                             sh "${mavenHome}/bin/mvn clean package "
                        }
