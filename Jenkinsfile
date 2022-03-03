@@ -27,7 +27,7 @@ pipeline {
                             sh "${mavenHome}/bin/mvn clean package "
                        }
           }
-
+/*
      stage ('SonarQube Analysis') {
         steps {
               withSonarQubeEnv('sonar_server') {
@@ -87,7 +87,7 @@ pipeline {
                           sh "docker rmi bathurudocker/devops-simpleapp" 
                  } 
           }
-          
+          */
         stage('Deploy Into DEV') {
        steps {   
            sh "pwd"
