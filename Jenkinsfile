@@ -2,7 +2,7 @@
    
 pipeline {
    agent { label 'aws-jenkins-slave' }     //agent any //
-   /*
+   
     triggers {
           pollSCM('4 4 4 * *')
     }
@@ -14,9 +14,9 @@ pipeline {
      }
     tools{
           maven 'maven'
-     }*/
+     }
     stages {
-  /*         stage ('Git Checkout') {
+           stage ('Git Checkout') {
                  steps {
                      git credentialsId: 'github-credentials' , url: 'https://github.com/bathuru/simpleapp.git',  branch: 'master'   
                 }
@@ -27,8 +27,8 @@ pipeline {
                             //sh "${mavenHome}/bin/mvn clean versions:set -Dver=${VER_NUM} package "
                             sh "${mavenHome}/bin/mvn clean package "
                        }
-          }*/
-/*
+          }
+
      stage ('SonarQube Analysis') {
         steps {
               withSonarQubeEnv('sonar_server') {
@@ -88,7 +88,7 @@ pipeline {
                           sh "docker rmi bathurudocker/devops-simpleapp" 
                  } 
           }
-          */
+    
         stage('Deploy Into DEV') {
        steps {   
            sh "pwd"
