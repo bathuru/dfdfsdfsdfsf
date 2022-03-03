@@ -15,7 +15,7 @@ pipeline {
           maven 'maven'
      }
     stages {
-           stage ('Git Checkout') {
+  /*         stage ('Git Checkout') {
                  steps {
                      git credentialsId: 'github-credentials' , url: 'https://github.com/bathuru/simpleapp.git',  branch: 'master'   
                 }
@@ -26,7 +26,7 @@ pipeline {
                             //sh "${mavenHome}/bin/mvn clean versions:set -Dver=${VER_NUM} package "
                             sh "${mavenHome}/bin/mvn clean package "
                        }
-          }
+          }*/
 /*
      stage ('SonarQube Analysis') {
         steps {
