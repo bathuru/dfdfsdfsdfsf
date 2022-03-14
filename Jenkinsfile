@@ -93,8 +93,8 @@ pipeline {
        steps {   
            sh "pwd"
            sshagent(['aws-private-key-mumbai']) {
-               sh "ssh -vvv -o StrictHostKeyChecking=no ec2-user@13.233.108.83  sudo docker rm -f devops-simpleapp || true"
-               sh "ssh -vvv -o StrictHostKeyChecking=no ec2-user@13.233.108.83  sudo docker run  -d -p 80:8080 --name devops-simpleapp bathurudocker/devops-simpleapp:latest"
+               sh "ssh -vv -o StrictHostKeyChecking=no ec2-user@13.233.108.83  sudo docker rm -f devops-simpleapp || true"
+               sh "ssh -vv -o StrictHostKeyChecking=no ec2-user@13.233.108.83  sudo docker run  -d -p 80:8080 --name devops-simpleapp bathurudocker/devops-simpleapp:latest"
           }
        }
      }
