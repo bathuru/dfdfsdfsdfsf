@@ -18,7 +18,7 @@ pipeline {
     stages {
            stage ('Git Checkout') {
                  steps {
-                     git credentialsId: 'github-credentials' , url: 'https://github.com/bathuru/simpleapp.git',  branch: 'master'   
+                     git credentialsId: 'github-credentials' , url: 'https://github.com/sbathuru/simpleapp.git',  branch: 'master'   
                 }
            }
 
@@ -41,7 +41,7 @@ pipeline {
             steps {
                 rtServer (
                     id: "jfrog_server",
-                    url: "https://jfrogsrini.jfrog.io/artifactory",
+                    url: "https://sbathuru.jfrog.io/artifactory",
                     credentialsId: "jfrog_cred"
                 )
                 rtMavenDeployer (
@@ -75,17 +75,17 @@ pipeline {
                                     try{
                                             sh "pwd"
                                              //sh "docker rm -f simpleapp || true"
-                                             //sh "docker rmi bathurudocker/simpleapp || true"       //sh 'docker rmi $(docker images bathurudocker/simpleapp)''
+                                             //sh "docker rmi sbathuru/simpleapp || true"       //sh 'docker rmi $(docker images sbathuru/simpleapp)''
                                           }catch(error){
                                           //  do nothing if there is an exception
                                           }
                             }
-                          sh "docker build -t bathurudocker/devops-simpleapp:latest ."
+                          sh "docker build -t sbathuru/devops-simpleapp:latest ."
                           withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'dockerpwd')]) {
-                                 sh "docker login -u bathurudocker -p ${dockerpwd}"
+                                 sh "docker login -u sbathuru -p ${dockerpwd}"
                          }
-                          sh "docker push bathurudocker/devops-simpleapp:latest" 
-                          sh "docker rmi bathurudocker/devops-simpleapp" 
+                          sh "docker push sbathuru/devops-simpleapp:latest" 
+                          sh "docker rmi sbathuru/devops-simpleapp" 
                  } 
           }
     
@@ -94,7 +94,7 @@ pipeline {
            sh "pwd"
            sshagent(['aws-private-key-mumbai']) {
                sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.108.83  sudo docker rm -f devops-simpleapp || true"
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.108.83  sudo docker run  -d -p 80:8080 --name devops-simpleapp bathurudocker/devops-simpleapp:latest"
+               sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.108.83  sudo docker run  -d -p 80:8080 --name devops-simpleapp sbathuru/devops-simpleapp:latest"
           }
        }
      }
