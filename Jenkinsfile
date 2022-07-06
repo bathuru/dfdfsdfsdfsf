@@ -25,7 +25,7 @@ pipeline {
                     
                 }
            }
-
+/*
          stage ('Maven Build') {
                         steps {
                             //sh "${mavenHome}/bin/mvn clean versions:set -Dver=${VER_NUM} package "
@@ -114,7 +114,7 @@ pipeline {
                 )
             }
          }
-
+*/
          stage('Build Helm Charts') {
             steps {
               dir('charts') {
@@ -131,7 +131,7 @@ pipeline {
              sshagent(['aws-ap-south-pem']) {
                     sh 'pwd'
                     sh "scp -o StrictHostKeyChecking=no Chart.yaml  ec2-user@k8s-bootstrap.bathur.xyz:/home/ec2-user/"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@k8s-bootstrap.bathur.xyz   helm repo add simpleapp-helm  https://bathuru.jfrog.io/artifactory/simpleapp-helm --username srinivas.bathuru@gmail.com  --password AP8d6ghvZSZjJBDbmqjqwz12opx"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@k8s-bootstrap.bathur.xyz   helm repo add simpleapp-helm  https://sbathuru.jfrog.io/artifactory/simpleapp-helm --username sbathuru  --password Sridevi@116"
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@k8s-bootstrap.bathur.xyz   helm repo update"
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@k8s-bootstrap.bathur.xyz   helm upgrade simpleapp-helm  --install  --force ."
                 }
