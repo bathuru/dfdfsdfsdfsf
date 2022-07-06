@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: simpleapp
-          image: bathurudocker/devops-simpleapp:latest
+          image: sbathuru/devops-simpleapp:latest
           ports:
             - containerPort: 8080
 #  http://3.6.94.232:32000/simpleapp/
