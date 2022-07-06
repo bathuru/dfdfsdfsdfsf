@@ -19,8 +19,8 @@ pipeline {
     stages {
            stage ('Git Checkout') {
                  steps {
-                     sh "$USER"
-                     sh "$HOME"
+                     echo "$USER"
+                     echo "$HOME"
                      git credentialsId: 'github-credentials' , url: 'https://github.com/sbathuru/app-java-simpleapp.git',  branch: 'master'   
                 }
            }
