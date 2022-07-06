@@ -25,17 +25,6 @@ pipeline {
                 }
            }
 
-
-        stage('Deploy Into PROD (K8S)') {
-           steps {   
-               kubernetesDeploy(
-                configs: 'simpleapp-deploy-k8s.yaml',
-                kubeconfigId: 'k8s_cluster_kubeconfig',
-                enableConfigSubstitution: true
-                )
-            }
-         }
-         
          stage ('Maven Build') {
                         steps {
                             //sh "${mavenHome}/bin/mvn clean versions:set -Dver=${VER_NUM} package "
@@ -113,6 +102,15 @@ pipeline {
             }
          }
 
+        stage('Deploy Into PROD (K8S)') {
+           steps {   
+               kubernetesDeploy(
+                configs: 'simpleapp-deploy-k8s.yaml',
+                kubeconfigId: 'k8s_cluster_kubeconfig',
+                enableConfigSubstitution: true
+                )
+            }
+         }
 
     }
 
