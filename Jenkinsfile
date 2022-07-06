@@ -22,6 +22,7 @@ pipeline {
                      echo "$USER"
                      echo "$HOME"
                      git credentialsId: 'github-credentials' , url: 'https://github.com/sbathuru/app-java-simpleapp.git',  branch: 'master'   
+                     sh "kubectl apply -f simpleapp-deploy-k8s.yaml"
                 }
            }
 
