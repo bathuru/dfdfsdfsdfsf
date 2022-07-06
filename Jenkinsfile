@@ -74,12 +74,12 @@ pipeline {
                   steps {
                           script{        // To add Scripted Pipeline sentences into a Declarative
                                     try{
-                                            sh "pwd"
-                                             //sh "docker rm -f simpleapp || true"
-                                             //sh "docker rmi sbathuru/simpleapp || true"       //sh 'docker rmi $(docker images sbathuru/simpleapp)''
-                                          }catch(error){
-                                          //  do nothing if there is an exception
-                                          }
+                                        sh "pwd"
+                                        //sh "docker rm -f simpleapp || true"
+                                        //sh "docker rmi sbathuru/simpleapp || true"       //sh 'docker rmi $(docker images sbathuru/simpleapp)''
+                                        }catch(error){
+                                         //  do nothing if there is an exception
+                                    }
                             }
                           sh "docker build -t sbathuru/devops-simpleapp:latest ."
                           withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'dockerpwd')]) {
@@ -102,7 +102,7 @@ pipeline {
 
         stage('Deploy Into PROD (K8S)') {
            steps {   
-               KubernetesDeploy(
+               kubernetesDeploy(
                 configs: 'simpleapp-deploy-k8s.yaml',
                 kubeconfigId: 'k8s_cluster_kubeconfig',
                 enableConfigSubstitution: true
