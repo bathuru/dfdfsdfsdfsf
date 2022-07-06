@@ -115,6 +115,31 @@ pipeline {
             }
          }
 
+         stage('Build Helm Charts') {
+            steps {
+              dir('charts') {
+                       sh "helm package simpleapp"
+					   sh "helm push-artifactory --username sbathuru --password Sridevi@116   simpleapp-0.0.3.tgz https://sbathuru.jfrog.io/artifactory/simpleapp-helm"
+					  }
+          }
+        } 
+
+     	  stage ('Deploy Into PROD - Helm Charts')  {
+	      steps {
+           sh "helm version"
+           dir("charts/simpleapp"){
+             sshagent(['aws-ap-south-pem']) {
+                    sh 'pwd'
+                    sh "scp -o StrictHostKeyChecking=no Chart.yaml  ec2-user@k8s-bootstrap.bathur.xyz:/home/ec2-user/"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@k8s-bootstrap.bathur.xyz   helm repo add simpleapp-helm  https://bathuru.jfrog.io/artifactory/simpleapp-helm --username srinivas.bathuru@gmail.com  --password AP8d6ghvZSZjJBDbmqjqwz12opx"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@k8s-bootstrap.bathur.xyz   helm repo update"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@k8s-bootstrap.bathur.xyz   helm upgrade simpleapp-helm  --install  --force ."
+                }
+                }
+        }
+      }
+
+
     }
 
 
