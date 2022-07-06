@@ -89,16 +89,29 @@ pipeline {
                  } 
           }
     
-        stage('Deploy Into DEV') {
-       steps {   
-           sh "pwd"
-           sshagent(['aws-private-key-mumbai']) {
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker rm -f devops-simpleapp || true"
-               sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 80:8080 --name devops-simpleapp sbathuru/devops-simpleapp:latest"
-          }
-       }
-     }
+        stage('Deploy Into DEV (Docker)') {
+           steps {   
+               sh "pwd"
+               sshagent(['aws-private-key-mumbai']) {
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker rm -f devops-simpleapp || true"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathur.xyz  sudo docker run  -d -p 80:8080 --name devops-simpleapp sbathuru/devops-simpleapp:latest"
+                }
+            }
+         }
+
+        stage('Deploy Into PROD (K8S)') {
+           steps {   
+               KubernetesDeploy(
+                configs: 'simpleapp-deploy-k8s.yaml',
+                kubeconfigId: 'k8s_cluster_kubeconfig',
+                enableConfigSubstitution: true
+                )
+            }
+         }
+
     }
+
+
     post { success { echo 'Pipeline Sucessfully Finished' }
            failure { echo 'Pipeline Failure' }
     /*                 always {
