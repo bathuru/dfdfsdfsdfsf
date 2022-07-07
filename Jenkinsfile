@@ -119,7 +119,7 @@ pipeline {
             steps {
               dir('charts') {
                        sh "helm package simpleapp"
-					   sh "helm push-artifactory --username sbathuru --password Sridevi@116   simpleapp-0.0.3.tgz https://sbathuru.jfrog.io/artifactory/simpleapp-helm"
+					   sh "helm push-artifactory --username sbathuru --password Sridevi@116   simpleapp-helm-0.0.3.tgz https://sbathuru.jfrog.io/artifactory/simpleapp-helm"
 					  }
           }
         } 
