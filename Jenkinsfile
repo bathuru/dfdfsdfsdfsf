@@ -138,10 +138,7 @@ pipeline {
                 }
         }
       }
-
-
     }
-
 
     post { success { echo 'Pipeline Sucessfully Finished' }
            failure { echo 'Pipeline Failure' }
