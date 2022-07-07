@@ -10,7 +10,7 @@ metadata:
 spec:
   selector:
     app: simpleapp-app
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - port: 80
       targetPort: 8080
