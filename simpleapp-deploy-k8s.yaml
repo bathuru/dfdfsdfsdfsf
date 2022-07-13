@@ -1,11 +1,3 @@
-#simpleapp
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: prodNS
-  labels:
-    app: simpleapp-app
 ---
 apiVersion: v1
 kind: Service
