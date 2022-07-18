@@ -1,7 +1,7 @@
 
 ### Prerequisite
 1.Create a kubernets cluster using eks/aks <br>
-2.kubectl get svc   ##Get load balancer <br>
+2.$kubectl get svc    ##Get load balancer <br>
 3.update above "Load Balncer Name" in  "Go-daddy site"   >  ( sapp1 - LB )
 
 ### Application Deploy
