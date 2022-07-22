@@ -89,7 +89,7 @@ pipeline {
                                  sh "docker login -u sbathuru -p ${dockerpwd}"
                          }
                           sh "docker push sbathuru/java-maven-application:latest" 
-                          sh "docker rmi sbathuru/java-maven-application" 
+                          //sh "docker rmi sbathuru/java-maven-application" 
                  } 
           }
 /*    
