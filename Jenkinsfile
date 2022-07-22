@@ -84,12 +84,12 @@ pipeline {
                                          //  do nothing if there is an exception
                                     }
                             }
-                          sh "docker build -t sbathuru/devops-simpleapp:latest ."
+                          sh "docker build -t sbathuru/java-maven-application:latest ."
                           withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'dockerpwd')]) {
                                  sh "docker login -u sbathuru -p ${dockerpwd}"
                          }
-                          sh "docker push sbathuru/devops-simpleapp:latest" 
-                          sh "docker rmi sbathuru/devops-simpleapp" 
+                          sh "docker push sbathuru/java-maven-application:latest" 
+                          sh "docker rmi sbathuru/java-maven-application" 
                  } 
           }
 /*    
@@ -97,8 +97,8 @@ pipeline {
            steps {   
                sh "pwd"
                sshagent(['aws-private-key-mumbai']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathuru.shop  sudo docker rm -f devops-simpleapp || true"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathuru.shop  sudo docker run  -d -p 80:8080 --name devops-simpleapp sbathuru/devops-simpleapp:latest"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathuru.shop  sudo docker rm -f java-maven-application|| true"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@docker.bathuru.shop  sudo docker run  -d -p 80:8080 --name java-maven-application sbathuru/java-maven-application:latest"
                 }
             }
          }
