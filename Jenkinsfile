@@ -89,7 +89,7 @@ pipeline {
                                  sh "docker login -u sbathuru -p ${dockerpwd}"
                          }
                           sh "docker build -t sbathuru/java-maven-application:${VER_NUM} ."
-                          sh "docker image tag sbathuru/django-application:${VER_NUM}  sbathuru/django-application:latest"
+                          sh "docker image tag sbathuru/java-maven-application:${VER_NUM}  sbathuru/java-maven-application:latest"
                           sh "docker push sbathuru/java-maven-application:${VER_NUM}" 
                           //sh "docker rmi sbathuru/java-maven-application" 
                  } 
